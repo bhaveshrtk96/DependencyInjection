@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
          * and will also need application class which will have appcontainer instance
          * which we can access any where inside application since it is in application class
          */
+
+        //in below case u will observe address printed is different it means both
+        //view model are of different instances
         val appContainer = (application as MyApplication).appContainer
 /*        val userViewModel = appContainer.userInteractor?.let { UserViewModel(it) }
         Log.i("Bhavesh", "userViewModel = $userViewModel")
@@ -54,6 +57,7 @@ class MainActivity : AppCompatActivity() {
          * for that you will need view model factory
          */
 
+        //in below case view model instances is same
         val userViewModel = ViewModelProvider(this,appContainer.userViewModelFactory!!).get(UserViewModel::class.java)
         Log.i("Bhavesh", "userViewModel = $userViewModel")
 
