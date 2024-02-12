@@ -5,13 +5,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.difinalroomretrofit.UserViewModel.UserViewModel
-import com.example.difinalroomretrofit.interactors.UserInteractor
-import com.example.difinalroomretrofit.localdatasource.UserLocalDataSource
-import com.example.difinalroomretrofit.remotedatasource.RemoteDataSource
-import com.example.difinalroomretrofit.repository.UserRepository
-import com.example.difinalroomretrofit.roomDataBase.SampleDataBase
+import com.example.difinalroomretrofit.manualDI.FlowAppContainer
 import com.example.difinalroomretrofit.roomDataBase.entity.RoomUserEntity
-import com.example.difinalroomretrofit.usecase.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,15 +52,20 @@ class MainActivity : AppCompatActivity() {
          * for that you will need view model factory
          */
 
+        appContainer.flowAppContainer = appContainer.userInteractor?.let { FlowAppContainer(it) }
         //in below case view model instances is same
-        val userViewModel = ViewModelProvider(this,appContainer.userViewModelFactory!!).get(UserViewModel::class.java)
+        val userViewModel = ViewModelProvider(this,appContainer.flowAppContainer?.userViewModelFactory!!).get(UserViewModel::class.java)
         Log.i("Bhavesh", "userViewModel = $userViewModel")
 
-        val userViewModel1 = ViewModelProvider(this,appContainer.userViewModelFactory!!).get(UserViewModel::class.java)
+        val userViewModel1 = ViewModelProvider(this,appContainer.flowAppContainer?.userViewModelFactory!!).get(UserViewModel::class.java)
         Log.i("Bhavesh", "userViewModel1 = $userViewModel1")
 
         userViewModel?.insertUser(RoomUserEntity(userName = "Bhavesh"))
         userViewModel?.sendUser()
         userViewModel?.getUser()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

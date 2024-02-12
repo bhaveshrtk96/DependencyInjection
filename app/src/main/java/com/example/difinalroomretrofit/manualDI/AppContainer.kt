@@ -1,7 +1,6 @@
 package com.example.difinalroomretrofit.manualDI
 
 import android.content.Context
-import com.example.difinalroomretrofit.UserViewModel.UserViewModelFactory
 import com.example.difinalroomretrofit.interactors.UserInteractor
 import com.example.difinalroomretrofit.localdatasource.UserLocalDataSource
 import com.example.difinalroomretrofit.remotedatasource.RemoteDataSource
@@ -23,6 +22,7 @@ class AppContainer(context: Context) {
             UpdateUserUseCaseLocal(userRepository)
         )
     }
-
-    val userViewModelFactory = userInteractor?.let { UserViewModelFactory(it) }
+    //This is moved to flow container
+   /* val userViewModelFactory = userInteractor?.let { UserViewModelFactory(it) }*/
+    var flowAppContainer : FlowAppContainer? = null
 }
