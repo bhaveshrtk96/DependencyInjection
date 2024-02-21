@@ -8,6 +8,7 @@ import com.example.difinalroomretrofit.UserViewModel.UserViewModel
 import com.example.difinalroomretrofit.interactors.UserInteractor
 import com.example.difinalroomretrofit.localdatasource.UserLocalDataSource
 import com.example.difinalroomretrofit.manualDI.FlowAppContainer
+import com.example.difinalroomretrofit.network.FakeApiService
 import com.example.difinalroomretrofit.remotedatasource.RemoteDataSource
 import com.example.difinalroomretrofit.repository.UserRepository
 import com.example.difinalroomretrofit.roomDataBase.SampleDataBase
@@ -28,13 +29,13 @@ class MainActivity : AppCompatActivity() {
 
         val dao = SampleDataBase.getDataBaseInstance(this)?.getRoomUserDao()
         val localDataSource = dao?.let { UserLocalDataSource(it) }
-        val remoteDataSource = RemoteDataSource()
+        val remoteDataSource = RemoteDataSource(FakeApiService.getFakeApi())
         val userRepository = localDataSource?.let { UserRepository(it, remoteDataSource) } ?: return
         val userInteractor = UserInteractor(
             GetAllUserUseCaseLocal(userRepository),
-            GetUserUseCase(userRepository),
+            GetAllProductsUseCase(userRepository),
             InsertUserUseCaseLocal(userRepository),
-            sendUserUseCase(userRepository),
+            PostProductUseCase(userRepository),
             UpdateUserUseCaseLocal(userRepository)
         )
         val userViewModelWithoutDI = UserViewModel(userInteractor)
@@ -49,10 +50,12 @@ class MainActivity : AppCompatActivity() {
         //in below case u will observe address printed is different it means both
         //view model are of different instances
         val appContainer = (application as MyApplication).appContainer
-        val userViewModelWithDIWithoutFactory = appContainer.userInteractor?.let { UserViewModel(it) }
+        val userViewModelWithDIWithoutFactory =
+            appContainer.userInteractor?.let { UserViewModel(it) }
         Log.i(TAG_DI, "userViewModel = $userViewModelWithDIWithoutFactory")
 
-        val userViewModelWithDIWithoutFactory1 = appContainer.userInteractor?.let { UserViewModel(it) }
+        val userViewModelWithDIWithoutFactory1 =
+            appContainer.userInteractor?.let { UserViewModel(it) }
         Log.i(TAG_DI, "userViewModel1 = $userViewModelWithDIWithoutFactory1")
 
         /**
@@ -65,15 +68,21 @@ class MainActivity : AppCompatActivity() {
 
         appContainer.flowAppContainer = appContainer.userInteractor?.let { FlowAppContainer(it) }
         //in below case view model instances is same
-        val userViewModelWithFactory = ViewModelProvider(this,appContainer.flowAppContainer?.userViewModelFactory!!).get(UserViewModel::class.java)
+        val userViewModelWithFactory =
+            ViewModelProvider(this, appContainer.flowAppContainer?.userViewModelFactory!!).get(
+                UserViewModel::class.java
+            )
         Log.i(TAG_DI, "userViewModel = $userViewModelWithFactory")
 
-        val userViewModelWithFactory1 = ViewModelProvider(this,appContainer.flowAppContainer?.userViewModelFactory!!).get(UserViewModel::class.java)
+        val userViewModelWithFactory1 =
+            ViewModelProvider(this, appContainer.flowAppContainer?.userViewModelFactory!!).get(
+                UserViewModel::class.java
+            )
         Log.i(TAG_DI, "userViewModel1 = $userViewModelWithFactory1")
 
-        userViewModelWithFactory.insertUser(RoomUserEntity(userName = "Bhavesh"))
-        userViewModelWithFactory.sendUser()
-        userViewModelWithFactory.getUser()
+        userViewModelWithFactory.insertUserToDB(RoomUserEntity(userName = "Bhavesh"))
+        userViewModelWithFactory.postProduct()
+        userViewModelWithFactory.getAllProducts()
 
         //from here we will start with Dagger
     }

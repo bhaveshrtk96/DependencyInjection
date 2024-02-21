@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.difinalroomretrofit.interactors.UserInteractor
 import com.example.difinalroomretrofit.roomDataBase.entity.RoomUserEntity
+import com.example.difinalroomretrofit.sharedmodelentities.ProductPojoItem
 import kotlinx.coroutines.launch
 
 class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
@@ -13,30 +14,34 @@ class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
     private var _userList: MutableLiveData<MutableList<RoomUserEntity>> = MutableLiveData()
     val userList: LiveData<MutableList<RoomUserEntity>> = _userList
 
-    fun insertUser(userEntity: RoomUserEntity) {
+    fun insertUserToDB(userEntity: RoomUserEntity) {
         viewModelScope.launch {
             userInteractor.insertUserUseCaseLocal(userEntity)
         }
     }
 
-    fun updateUser(userEntity: RoomUserEntity) {
+    fun updateUserToDB(userEntity: RoomUserEntity) {
         viewModelScope.launch {
             userInteractor.updateUserUseCaseLocal(userEntity)
         }
     }
 
-    fun getAllUser() {
+    fun getAllUserFromDb() {
         viewModelScope.launch {
             var tempUserList = userInteractor.getAllUserUseCaseLocal()
             _userList.postValue(tempUserList)
         }
     }
 
-    fun getUser() {
-        userInteractor.getUserUseCase()
+    fun getAllProducts() {
+        viewModelScope.launch {
+            userInteractor.getAllProductsUseCase().isSuccessful
+        }
     }
 
-    fun sendUser() {
-        userInteractor.sendUserUseCase()
+    fun postProduct() {
+        viewModelScope.launch {
+            userInteractor.postProductUseCase(ProductPojoItem())
+        }
     }
 }

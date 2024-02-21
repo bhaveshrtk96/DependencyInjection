@@ -1,6 +1,5 @@
 package com.example.difinalroomretrofit.network
 
-import com.example.fakeapiretrofit.network.FakeApiQueries
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -3,6 +3,9 @@ package com.example.difinalroomretrofit.repository
 import com.example.difinalroomretrofit.localdatasource.IUserLocalDataSource
 import com.example.difinalroomretrofit.remotedatasource.IRemoteDataSource
 import com.example.difinalroomretrofit.roomDataBase.entity.RoomUserEntity
+import com.example.difinalroomretrofit.sharedmodelentities.ProductPojo
+import com.example.difinalroomretrofit.sharedmodelentities.ProductPojoItem
+import retrofit2.Response
 
 class UserRepository(
     val localDataSource: IUserLocalDataSource,
@@ -20,12 +23,12 @@ class UserRepository(
         return localDataSource.getAllUser()
     }
 
-    fun getUser() {
-        remoteDataSource.getUser()
+    suspend fun getAllProducts(): Response<ProductPojo> {
+        return remoteDataSource.getAllProducts()
     }
 
-    fun sendUser() {
-        remoteDataSource.sendUser()
+    suspend fun postProduct(productPojo: ProductPojoItem): Response<ProductPojoItem> {
+        return remoteDataSource.postProduct(productPojo)
     }
 
 }

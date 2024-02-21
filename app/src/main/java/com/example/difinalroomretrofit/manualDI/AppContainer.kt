@@ -18,9 +18,9 @@ class AppContainer(context: Context) {
     val userInteractor = userRepository?.let { GetAllUserUseCaseLocal(it) }?.let {
         UserInteractor(
             it,
-            GetUserUseCase(userRepository),
+            GetAllProductsUseCase(userRepository),
             InsertUserUseCaseLocal(userRepository),
-            sendUserUseCase(userRepository),
+            PostProductUseCase(userRepository),
             UpdateUserUseCaseLocal(userRepository)
         )
     }

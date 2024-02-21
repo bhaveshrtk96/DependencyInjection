@@ -1,4 +1,4 @@
-package com.example.fakeapiretrofit.network
+package com.example.difinalroomretrofit.network
 
 import com.example.difinalroomretrofit.sharedmodelentities.ProductPojo
 import com.example.difinalroomretrofit.sharedmodelentities.ProductPojoItem

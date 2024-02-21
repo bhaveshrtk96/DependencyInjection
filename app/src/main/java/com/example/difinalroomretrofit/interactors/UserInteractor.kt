@@ -4,8 +4,8 @@ import com.example.difinalroomretrofit.usecase.*
 
 data class UserInteractor(
     val getAllUserUseCaseLocal: GetAllUserUseCaseLocal,
-    val getUserUseCase: GetUserUseCase,
+    val getAllProductsUseCase: GetAllProductsUseCase,
     val insertUserUseCaseLocal: InsertUserUseCaseLocal,
-    val sendUserUseCase: sendUserUseCase,
+    val postProductUseCase: PostProductUseCase,
     val updateUserUseCaseLocal: UpdateUserUseCaseLocal
 )
