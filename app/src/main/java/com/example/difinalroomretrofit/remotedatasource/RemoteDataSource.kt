@@ -6,8 +6,9 @@ import com.example.difinalroomretrofit.sharedmodelentities.ProductPojo
 import com.example.difinalroomretrofit.sharedmodelentities.ProductPojoItem
 import retrofit2.Response
 import retrofit2.http.Body
+import javax.inject.Inject
 
-class RemoteDataSource(val fakeApiQueries: FakeApiQueries): IRemoteDataSource {
+class RemoteDataSource @Inject constructor(val fakeApiQueries: FakeApiQueries): IRemoteDataSource {
     override suspend fun getAllProducts(): Response<ProductPojo> {
         Log.i("RemoteDataSource","getUser")
         return fakeApiQueries.getAllProducts()

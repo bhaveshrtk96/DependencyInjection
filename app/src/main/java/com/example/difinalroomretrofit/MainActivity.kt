@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         /**
          * You can also delegate creation of viewmodel to appcontainer
          * for that you will need view model factory.
-         * And we willa also use ViewModelProvider for creation of view model.
+         * And we will also use ViewModelProvider for creation of view model.
          * Use of ViewModelProvider is necessary if you want to share view model across
          * fragment.
          */
@@ -85,6 +85,15 @@ class MainActivity : AppCompatActivity() {
         userViewModelWithFactory.getAllProducts()
 
         //from here we will start with Dagger
+
+        val daggerDiComponent = (application as MyApplication).daggerDiComponent
+        val viewModel = daggerDiComponent.getUserViewModel()
+        viewModel.insertUserToDB(RoomUserEntity(userName = "Bhavesh The Boss NEw"))
+
+        val viewModel1 = daggerDiComponent.getUserViewModel()
+        //in below case view model instances is same
+        //because @Singletone is marked on view model
+        Log.i(TAG_DI,"viewModel = $viewModel, viewModel1 = $viewModel1")
     }
 
     override fun onDestroy() {

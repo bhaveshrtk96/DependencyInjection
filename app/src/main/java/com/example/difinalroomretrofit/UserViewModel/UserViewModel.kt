@@ -8,8 +8,11 @@ import com.example.difinalroomretrofit.interactors.UserInteractor
 import com.example.difinalroomretrofit.roomDataBase.entity.RoomUserEntity
 import com.example.difinalroomretrofit.sharedmodelentities.ProductPojoItem
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class UserViewModel(val userInteractor: UserInteractor) : ViewModel() {
+@Singleton
+class UserViewModel @Inject constructor(val userInteractor: UserInteractor) : ViewModel() {
 
     private var _userList: MutableLiveData<MutableList<RoomUserEntity>> = MutableLiveData()
     val userList: LiveData<MutableList<RoomUserEntity>> = _userList

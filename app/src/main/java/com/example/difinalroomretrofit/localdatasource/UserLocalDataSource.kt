@@ -2,8 +2,9 @@ package com.example.difinalroomretrofit.localdatasource
 
 import com.example.difinalroomretrofit.roomDataBase.dao.UserDao
 import com.example.difinalroomretrofit.roomDataBase.entity.RoomUserEntity
+import javax.inject.Inject
 
-class UserLocalDataSource(val dao: UserDao): IUserLocalDataSource {
+class UserLocalDataSource @Inject constructor(val dao: UserDao): IUserLocalDataSource {
     override suspend fun insertUser(userEntity: RoomUserEntity) {
         dao.insertUser(userEntity)
     }

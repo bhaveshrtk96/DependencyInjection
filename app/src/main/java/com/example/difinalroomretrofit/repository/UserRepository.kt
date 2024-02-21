@@ -6,8 +6,9 @@ import com.example.difinalroomretrofit.roomDataBase.entity.RoomUserEntity
 import com.example.difinalroomretrofit.sharedmodelentities.ProductPojo
 import com.example.difinalroomretrofit.sharedmodelentities.ProductPojoItem
 import retrofit2.Response
+import javax.inject.Inject
 
-class UserRepository(
+class UserRepository @Inject constructor(
     val localDataSource: IUserLocalDataSource,
     val remoteDataSource: IRemoteDataSource
 ) {
