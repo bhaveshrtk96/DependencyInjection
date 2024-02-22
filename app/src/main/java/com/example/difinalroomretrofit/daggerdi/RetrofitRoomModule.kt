@@ -1,6 +1,7 @@
 package com.example.difinalroomretrofit.daggerdi
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import com.example.difinalroomretrofit.network.FakeApiQueries
 import com.example.difinalroomretrofit.roomDataBase.SampleDataBase
@@ -11,6 +12,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -25,7 +27,8 @@ class RetrofitRoomModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(): OkHttpClient {
+    fun providesOkHttpClient(@Named("int1") int1 : Int, @Named("int1") int2: Int): OkHttpClient {
+        Log.i("BhaveshKr","int1 = $int1, int2 = $int2")
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClient =

@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.difinalroomretrofit.UserViewModel.UserViewModel
+import com.example.difinalroomretrofit.daggerdi.DIDaggerActivityLevel
+import com.example.difinalroomretrofit.daggerdi.DaggerDIDaggerActivityLevel
 import com.example.difinalroomretrofit.interactors.UserInteractor
 import com.example.difinalroomretrofit.localdatasource.UserLocalDataSource
 import com.example.difinalroomretrofit.manualDI.FlowAppContainer
@@ -14,10 +16,17 @@ import com.example.difinalroomretrofit.repository.UserRepository
 import com.example.difinalroomretrofit.roomDataBase.SampleDataBase
 import com.example.difinalroomretrofit.roomDataBase.entity.RoomUserEntity
 import com.example.difinalroomretrofit.usecase.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG_DI = "DEPENDENCY INJECTION"
+
+    @Inject
+    lateinit var viewModel: UserViewModel
+
+    @Inject
+    lateinit var viewModel1: UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -86,14 +95,21 @@ class MainActivity : AppCompatActivity() {
 
         //from here we will start with Dagger
 
-        val daggerDiComponent = (application as MyApplication).daggerDiComponent
-        val viewModel = daggerDiComponent.getUserViewModel()
+        val daggerDiComponent = (application as MyApplication).daggerDiComponentAppLevel
+        //daggerDiComponent.inject(this)
+        //val viewModel = daggerDiComponent.getUserViewModel()
+        val activityLevel = DaggerDIDaggerActivityLevel.factory().create(daggerDiComponent)
+        //I personally feel we shoul not used activity level componenet
+        //to inject view model but here I want to make example where one component is
+        //dependent on another componenet. so here activity level compoenent we
+        //will make dependent upon app level componenet
+        activityLevel.inject(this)
         viewModel.insertUserToDB(RoomUserEntity(userName = "Bhavesh The Boss NEw"))
 
-        val viewModel1 = daggerDiComponent.getUserViewModel()
+        //val viewModel1 = daggerDiComponent.getUserViewModel()
         //in below case view model instances is same
         //because @Singletone is marked on view model
-        Log.i(TAG_DI,"viewModel = $viewModel, viewModel1 = $viewModel1")
+        Log.i(TAG_DI, "viewModel = $viewModel, viewModel1 = $viewModel1")
     }
 
     override fun onDestroy() {

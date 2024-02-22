@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+//@Singleton
 class UserViewModel @Inject constructor(val userInteractor: UserInteractor) : ViewModel() {
 
     private var _userList: MutableLiveData<MutableList<RoomUserEntity>> = MutableLiveData()
