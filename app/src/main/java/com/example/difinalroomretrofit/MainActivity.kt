@@ -96,7 +96,8 @@ class MainActivity : AppCompatActivity() {
         val daggerDiComponent = (application as MyApplication).daggerDiComponentAppLevel
         //daggerDiComponent.inject(this)
         //val viewModel = daggerDiComponent.getUserViewModel()
-        val activityLevel = daggerDiComponent.getSubComponent().create(5)
+        //val activityLevel = daggerDiComponent.getSubComponent().create(5)
+        val activityLevel = daggerDiComponent.getSubComponent().injectInt(5).build()
         //I personally feel we should not used activity level componenet
         //to inject view model but here I want to make example where one component is
         //dependent on another componenet. so here activity level compoenent we

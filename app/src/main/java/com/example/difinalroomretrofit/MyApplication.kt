@@ -11,6 +11,13 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         appContainer = AppContainer(applicationContext)
-        daggerDiComponentAppLevel = DaggerDiComponentAppLevel.factory().create(this,5,10)
+        //daggerDiComponentAppLevel = DaggerDiComponentAppLevel.factory().create(this,5,10)
+        daggerDiComponentAppLevel =
+            DaggerDiComponentAppLevel
+                .builder()
+                .bindsContext(this)
+                .bindsInt1(50)
+                .bindsInt2(10)
+                .build()
     }
 }

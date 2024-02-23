@@ -1,8 +1,8 @@
 package com.example.difinalroomretrofit.daggerdi
 
 import com.example.difinalroomretrofit.MainActivity
+import dagger.Binds
 import dagger.BindsInstance
-import dagger.Component
 import dagger.Subcomponent
 
 @ActivityScope
@@ -10,9 +10,16 @@ import dagger.Subcomponent
 interface DIDaggerActivityLevel {
     fun inject(mainActivity: MainActivity)
 
-    @Subcomponent.Factory
+/*    @Subcomponent.Factory
     interface Factory {
         //fun create(appLevel: DiComponentAppLevel): DIDaggerActivityLevel
         fun create(@BindsInstance int3 : Int) : DIDaggerActivityLevel
+    }*/
+
+    @Subcomponent.Builder
+    interface Builder {
+        @BindsInstance
+        fun injectInt(int3: Int): Builder
+        fun build(): DIDaggerActivityLevel
     }
 }

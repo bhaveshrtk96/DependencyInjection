@@ -1,9 +1,6 @@
 package com.example.difinalroomretrofit.daggerdi
 
 import android.content.Context
-import com.example.difinalroomretrofit.MainActivity
-import com.example.difinalroomretrofit.network.FakeApiQueries
-import com.example.difinalroomretrofit.roomDataBase.dao.UserDao
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Named
@@ -24,9 +21,13 @@ interface DiComponentAppLevel {
 /*    fun providesUserDao() : UserDao
     fun providesFakeApiQueries(): FakeApiQueries*/
 
-    fun getSubComponent(): DIDaggerActivityLevel.Factory
+    fun getSubComponent(): DIDaggerActivityLevel.Builder
 
-    @Component.Factory
+
+    /**
+     * This by Factory pattern same things we can do through builder patter also
+     */
+/*    @Component.Factory
     interface Factory {
         fun create(
             @BindsInstance context: Context,
@@ -35,7 +36,20 @@ interface DiComponentAppLevel {
         ): DiComponentAppLevel
         //if you are binding more than one instance of same data type than you
         //have to use @named annotation
-    }
+    }*/
 
+    /**
+     * This is using builder pattern
+     */
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun bindsContext(context: Context): Builder
+        @BindsInstance
+        fun bindsInt1(@Named("int1")int1: Int): Builder
+        @BindsInstance
+        fun bindsInt2(@Named("int2")int2: Int): Builder
+        fun build(): DiComponentAppLevel
+    }
 
 }

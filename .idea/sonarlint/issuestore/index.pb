@@ -25,8 +25,6 @@ P
 Mapp/src/main/java/com/example/difinalroomretrofit/roomDataBase/dao/UserDao.kt,1\1\1146af6a98577dc0997a82b2378df7adfebf7851
 ˆ
 Xapp/src/main/java/com/example/difinalroomretrofit/localdatasource/UserLocalDataSource.kt,8\c\8c60bbe646f7a0728a624d89f941e2bb64a4629c
-€
-Papp/src/main/java/com/example/difinalroomretrofit/daggerdi/RetrofitRoomModule.kt,4\8\482ceb0158bc907534f23a791ea51d733ecdd10b
 
 Oapp/src/main/java/com/example/difinalroomretrofit/interactors/UserInteractor.kt,c\6\c6bd8a66b20bde1fe572fd3a6487f0e02a040622
 ƒ

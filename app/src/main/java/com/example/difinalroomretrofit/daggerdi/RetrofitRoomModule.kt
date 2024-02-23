@@ -27,7 +27,7 @@ class RetrofitRoomModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(@Named("int1") int1 : Int, @Named("int1") int2: Int): OkHttpClient {
+    fun providesOkHttpClient(@Named("int1") int1 : Int, @Named("int2") int2: Int): OkHttpClient {
         Log.i("BhaveshKr","int1 = $int1, int2 = $int2")
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
