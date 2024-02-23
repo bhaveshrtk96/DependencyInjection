@@ -1,15 +1,18 @@
 package com.example.difinalroomretrofit.daggerdi
 
 import com.example.difinalroomretrofit.MainActivity
+import dagger.BindsInstance
 import dagger.Component
+import dagger.Subcomponent
 
 @ActivityScope
-@Component(dependencies = [DiComponentAppLevel::class], modules = [DataSourceModule::class])
+@Subcomponent(modules = [DataSourceModule::class])
 interface DIDaggerActivityLevel {
     fun inject(mainActivity: MainActivity)
 
-    @Component.Factory
+    @Subcomponent.Factory
     interface Factory {
-        fun create(appLevel: DiComponentAppLevel): DIDaggerActivityLevel
+        //fun create(appLevel: DiComponentAppLevel): DIDaggerActivityLevel
+        fun create(@BindsInstance int3 : Int) : DIDaggerActivityLevel
     }
 }

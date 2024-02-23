@@ -15,3 +15,23 @@ Tapp/src/main/java/com/example/difinalroomretrofit/sharedmodelentities/ProductPo
 Xapp/src/main/java/com/example/difinalroomretrofit/sharedmodelentities/ProductPojoItem.kt,7\d\7d873ce918caccaf5cef6a9bf35a371a79c1dd03
 v
 Fapp/src/main/java/com/example/difinalroomretrofit/network/ViewState.kt,2\f\2f272907b99b0407e167000122a43af5786e473c
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+}
+Mapp/src/main/java/com/example/difinalroomretrofit/roomDataBase/dao/UserDao.kt,1\1\1146af6a98577dc0997a82b2378df7adfebf7851
+ˆ
+Xapp/src/main/java/com/example/difinalroomretrofit/localdatasource/UserLocalDataSource.kt,8\c\8c60bbe646f7a0728a624d89f941e2bb64a4629c
+€
+Papp/src/main/java/com/example/difinalroomretrofit/daggerdi/RetrofitRoomModule.kt,4\8\482ceb0158bc907534f23a791ea51d733ecdd10b
+
+Oapp/src/main/java/com/example/difinalroomretrofit/interactors/UserInteractor.kt,c\6\c6bd8a66b20bde1fe572fd3a6487f0e02a040622
+ƒ
+Sapp/src/main/java/com/example/difinalroomretrofit/usecase/GetAllUserUseCaseLocal.kt,4\6\46e8d5e7cc1371afe7739669d4b78da320eb206e
+‰
+Yapp/src/main/java/com/example/difinalroomretrofit/localdatasource/IUserLocalDataSource.kt,f\c\fcd3d2616cf026d9756f128565ed06d42251b261
+~
+Napp/src/main/java/com/example/difinalroomretrofit/repository/UserRepository.kt,b\f\bfa5d311ddc1f3b2ef7aba2b7d5e2d1340cf957c

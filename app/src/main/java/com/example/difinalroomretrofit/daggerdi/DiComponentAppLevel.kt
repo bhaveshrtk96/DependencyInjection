@@ -16,8 +16,15 @@ interface DiComponentAppLevel {
 
     //fun inject(mainActivity: MainActivity)
 
-    fun providesUserDao() : UserDao
-    fun providesFakeApiQueries(): FakeApiQueries
+    /**
+     * iF YOU COMMENT BELOW LINES ACTIVTY LEVEL COMPONENT WILL NOT
+     * BE ABLE TO ACCESS IT. WE NEED TO EXPOSE IT. ALTERNATIVE IS
+     * DEFINING SUBCOMPONENT
+     */
+/*    fun providesUserDao() : UserDao
+    fun providesFakeApiQueries(): FakeApiQueries*/
+
+    fun getSubComponent(): DIDaggerActivityLevel.Factory
 
     @Component.Factory
     interface Factory {

@@ -5,8 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.difinalroomretrofit.UserViewModel.UserViewModel
-import com.example.difinalroomretrofit.daggerdi.DIDaggerActivityLevel
-import com.example.difinalroomretrofit.daggerdi.DaggerDIDaggerActivityLevel
 import com.example.difinalroomretrofit.interactors.UserInteractor
 import com.example.difinalroomretrofit.localdatasource.UserLocalDataSource
 import com.example.difinalroomretrofit.manualDI.FlowAppContainer
@@ -98,8 +96,8 @@ class MainActivity : AppCompatActivity() {
         val daggerDiComponent = (application as MyApplication).daggerDiComponentAppLevel
         //daggerDiComponent.inject(this)
         //val viewModel = daggerDiComponent.getUserViewModel()
-        val activityLevel = DaggerDIDaggerActivityLevel.factory().create(daggerDiComponent)
-        //I personally feel we shoul not used activity level componenet
+        val activityLevel = daggerDiComponent.getSubComponent().create(5)
+        //I personally feel we should not used activity level componenet
         //to inject view model but here I want to make example where one component is
         //dependent on another componenet. so here activity level compoenent we
         //will make dependent upon app level componenet
