@@ -1,13 +1,15 @@
 package com.example.difinalroomretrofit.daggerdi
 
+import androidx.lifecycle.ViewModel
 import com.example.difinalroomretrofit.MainActivity
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent(modules = [DataSourceModule::class])
+@Subcomponent(modules = [DataSourceModule::class, SampleViewModelProviders::class])
 interface DIDaggerActivityLevel {
+    fun getMap(): Map<Class<*>,ViewModel>
     fun inject(mainActivity: MainActivity)
 
 /*    @Subcomponent.Factory

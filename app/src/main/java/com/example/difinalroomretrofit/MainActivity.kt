@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.difinalroomretrofit.UserViewModel.UserViewModel
+import androidx.lifecycle.get
+import com.example.difinalroomretrofit.UserViewModel.*
 import com.example.difinalroomretrofit.interactors.UserInteractor
 import com.example.difinalroomretrofit.localdatasource.UserLocalDataSource
 import com.example.difinalroomretrofit.manualDI.FlowAppContainer
@@ -25,6 +26,13 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModel1: UserViewModel
+
+    @Inject
+    lateinit var userViewModelFactory: UserViewModelFactory1
+
+    @Inject
+    lateinit var genericUserViewModelFactory: GenericUserViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -109,6 +117,20 @@ class MainActivity : AppCompatActivity() {
         //in below case view model instances is same
         //because @Singletone is marked on view model
         Log.i(TAG_DI, "viewModel = $viewModel, viewModel1 = $viewModel1")
+
+        /**
+         * In dagger also we should use view model factory for view model creation
+         */
+
+        val userViewModel =
+            ViewModelProvider(this, userViewModelFactory).get(UserViewModel::class.java)
+
+        val userViewModel11 =
+            ViewModelProvider(this, genericUserViewModelFactory).get(UserViewModel::class.java)
+
+        val userViewModelSample2 =
+            ViewModelProvider(this, genericUserViewModelFactory).get(UserViewModelSample2::class.java)
+
     }
 
     override fun onDestroy() {

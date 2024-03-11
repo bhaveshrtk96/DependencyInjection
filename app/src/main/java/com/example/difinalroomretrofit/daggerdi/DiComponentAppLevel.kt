@@ -21,6 +21,7 @@ interface DiComponentAppLevel {
 /*    fun providesUserDao() : UserDao
     fun providesFakeApiQueries(): FakeApiQueries*/
 
+    //fun getSubComponent(): DIDaggerActivityLevel.Factory
     fun getSubComponent(): DIDaggerActivityLevel.Builder
 
 

@@ -33,3 +33,13 @@ Sapp/src/main/java/com/example/difinalroomretrofit/usecase/GetAllUserUseCaseLoca
 Yapp/src/main/java/com/example/difinalroomretrofit/localdatasource/IUserLocalDataSource.kt,f\c\fcd3d2616cf026d9756f128565ed06d42251b261
 ~
 Napp/src/main/java/com/example/difinalroomretrofit/repository/UserRepository.kt,b\f\bfa5d311ddc1f3b2ef7aba2b7d5e2d1340cf957c
+{
+Kapp/src/main/java/com/example/difinalroomretrofit/daggerdi/ActivityScope.kt,f\5\f58437996a49dd6e359fb5d6055a5b01e0953a48
+†
+Vapp/src/main/java/com/example/difinalroomretrofit/remotedatasource/RemoteDataSource.kt,a\b\ab534facdc62bb13833dfa6f16ec4e6ab6fb5413
+€
+Papp/src/main/java/com/example/difinalroomretrofit/daggerdi/RetrofitRoomModule.kt,4\8\482ceb0158bc907534f23a791ea51d733ecdd10b
+r
+Bapp/src/main/java/com/example/difinalroomretrofit/MyApplication.kt,a\7\a76b46503bb54e3f1ff4c169703340d354c292c4
+‡
+Wapp/src/main/java/com/example/difinalroomretrofit/remotedatasource/IRemoteDataSource.kt,9\1\91de0e226c5aa61d69880604047589041d8486a4
